@@ -1,7 +1,33 @@
 package org.example.webmagament.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.example.webmagament.POJO.Emp;
+import org.example.webmagament.POJO.Result;
+import org.example.webmagament.service.EmpService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import java.util.List;
+
+@Slf4j
+@RestController//包含的@ResponseBody注解会将返回值转为JSON格式
 public class EmpController {
+
+    //定义一个日志记录对象->用@Slf4j注解代替
+    //private static Logger log = LoggerFactory.getLogger(EmpController.class);
+
+    @Autowired
+    private  EmpService empService;
+
+    //@RequestMapping(value = "/qill7",method = RequestMethod.GET)//指定为GET请求
+    @GetMapping("/qill7")//与上面等效
+    public Result list(){
+        log.info("=========查询全部员工信息============");
+
+        //调用service查询员工信息
+        List<Emp> emplist =  empService.list();
+
+        return Result.success(emplist);
+    }
 }
