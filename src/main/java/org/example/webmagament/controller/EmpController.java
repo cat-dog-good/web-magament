@@ -11,6 +11,7 @@ import java.util.List;
 
 @Slf4j
 @RestController//包含的@ResponseBody注解会将返回值转为JSON格式
+@RequestMapping("/qill7")
 public class EmpController {
 
     //定义一个日志记录对象->用@Slf4j注解代替
@@ -21,7 +22,7 @@ public class EmpController {
 
     //查询全部员工信息
     //@RequestMapping(value = "/qill7",method = RequestMethod.GET)//指定为GET请求
-    @GetMapping("/qill7")//与上面等效
+    @GetMapping//与上面等效
     public Result list(){
         log.info("=========查询全部员工信息============");
 
@@ -32,7 +33,7 @@ public class EmpController {
     }
 
     //根据id删除员工信息
-    @DeleteMapping("/qill7/{id}")
+    @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id){
         log.info("根据id删除员工信息:{}",id);
 
@@ -44,7 +45,7 @@ public class EmpController {
     }
 
     //添加员工信息
-    @PostMapping("/qill7s")
+    @PostMapping
     public Result add(@RequestBody Emp emp){
         log.info("添加员工信息:{}",emp);
 
