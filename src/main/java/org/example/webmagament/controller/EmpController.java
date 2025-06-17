@@ -40,7 +40,9 @@ public class EmpController {
         log.info("根据id删除员工信息:{}",id);
 
         //调用service删除员工信息
-        empService.delete(id);
+        if (empService.delete(id)==0){
+            return Result.error("未成功删除");
+        }
         return Result.success();
     }
 }

@@ -10,5 +10,5 @@ public interface EmpService {
     List<Emp> list();
 
     //根据id员工信息
-    void delete(Integer id);
+    int delete(Integer id);
 }

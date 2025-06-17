@@ -17,5 +17,5 @@ public interface EmpMapper {
 
     //根据id删除员工信息
     @Delete("delete from emp where id=#{id}")
-    void deleteById(Integer id);
+    int deleteById(Integer id);
 }
