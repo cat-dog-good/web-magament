@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 //用户表
-public class emp {
+public class Emp {
         private Integer id;
         private String workNo;
         private String name;
