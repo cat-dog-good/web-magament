@@ -5,7 +5,9 @@ import org.example.webmagament.POJO.Emp;
 import org.example.webmagament.POJO.Result;
 import org.example.webmagament.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class EmpController {
     @Autowired
     private  EmpService empService;
 
+    //查询全部员工信息
     //@RequestMapping(value = "/qill7",method = RequestMethod.GET)//指定为GET请求
     @GetMapping("/qill7")//与上面等效
     public Result list(){
@@ -29,5 +32,15 @@ public class EmpController {
         List<Emp> emplist =  empService.list();
 
         return Result.success(emplist);
+    }
+
+    //根据id删除员工信息
+    @DeleteMapping("/qill7/{id}")
+    public Result delete(@PathVariable Integer id){
+        log.info("根据id删除员工信息:{}",id);
+
+        //调用service删除员工信息
+        empService.delete(id);
+        return Result.success();
     }
 }

@@ -8,4 +8,7 @@ public interface EmpService {
 
     //查询全部员工信息
     List<Emp> list();
+
+    //根据id员工信息
+    void delete(Integer id);
 }
