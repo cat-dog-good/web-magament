@@ -11,4 +11,7 @@ public interface EmpService {
 
     //根据id员工信息
     int delete(Integer id);
+
+    //添加员工信息
+    void add(Emp emp);
 }

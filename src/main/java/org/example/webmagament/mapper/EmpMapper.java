@@ -2,6 +2,7 @@ package org.example.webmagament.mapper;
 
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.example.webmagament.POJO.Emp;
@@ -18,4 +19,8 @@ public interface EmpMapper {
     //根据id删除员工信息
     @Delete("delete from emp where id=#{id}")
     int deleteById(Integer id);
+
+    //添加删除员工信息
+    @Insert("insert into emp values (#{id},#{workNo},#{name},#{gender},#{age},#{idCard})")
+    void insert(Emp emp);
 }

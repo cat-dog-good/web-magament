@@ -23,4 +23,9 @@ public class EmpServiceImpl implements EmpService {
     public int delete(Integer id) {
        return empMapper.deleteById(id);
     }
+
+    @Override
+    public void add(Emp emp) {
+        empMapper.insert(emp);
+    }
 }
