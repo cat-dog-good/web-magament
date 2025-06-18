@@ -13,6 +13,7 @@ import java.util.List;
 public interface EmpMapper {
 
     //查询全部员工信息
+    //也可以分页查询(利用pageHelper插件)
     @Select("select * from emp")
     List<Emp> list();
 
@@ -24,6 +25,7 @@ public interface EmpMapper {
     @Insert("insert into emp values (#{id},#{workNo},#{name},#{gender},#{age},#{idCard})")
     void insert(Emp emp);
 
+    /*
     //获取员工总记录数
     @Select("select count(*) from emp")
     public Long count();
@@ -31,4 +33,8 @@ public interface EmpMapper {
     //分页查询获取列表数据
     @Select("select * from emp limit #{start},#{pageSize}")
     public List<Emp> page(Integer start, Integer pageSize);
+     */
+
+
+
 }
