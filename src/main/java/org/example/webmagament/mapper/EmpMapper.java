@@ -23,4 +23,12 @@ public interface EmpMapper {
     //添加删除员工信息
     @Insert("insert into emp values (#{id},#{workNo},#{name},#{gender},#{age},#{idCard})")
     void insert(Emp emp);
+
+    //获取员工总记录数
+    @Select("select count(*) from emp")
+    public Long count();
+
+    //分页查询获取列表数据
+    @Select("select * from emp limit #{start},#{pageSize}")
+    public List<Emp> page(Integer start, Integer pageSize);
 }

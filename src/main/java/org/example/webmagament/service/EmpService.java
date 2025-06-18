@@ -1,6 +1,7 @@
 package org.example.webmagament.service;
 
 import org.example.webmagament.POJO.Emp;
+import org.example.webmagament.POJO.PageBean;
 
 import java.util.List;
 
@@ -14,4 +15,7 @@ public interface EmpService {
 
     //添加员工信息
     void add(Emp emp);
+
+    //分页查询员工信息
+    PageBean page(Integer page, Integer pageSize);
 }

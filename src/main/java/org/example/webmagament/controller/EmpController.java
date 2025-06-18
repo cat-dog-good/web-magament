@@ -2,6 +2,7 @@ package org.example.webmagament.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.webmagament.POJO.Emp;
+import org.example.webmagament.POJO.PageBean;
 import org.example.webmagament.POJO.Result;
 import org.example.webmagament.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class EmpController {
     private  EmpService empService;
 
     //查询全部员工信息
-    //@RequestMapping(value = "/qill7",method = RequestMethod.GET)//指定为GET请求
-    @GetMapping//与上面等效
+    //@RequestMapping(value = "/qill7/selectAll",method = RequestMethod.GET)//指定为GET请求
+    @GetMapping("/selectAll")//与上面等效
     public Result list(){
         log.info("=========查询全部员工信息============");
 
@@ -30,6 +31,18 @@ public class EmpController {
         List<Emp> emplist =  empService.list();
 
         return Result.success(emplist);
+    }
+
+    //分页查询员工信息
+    @GetMapping("/selectPage")
+    public Result page(@RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "3") Integer pageSize){
+        //@RequestParam设置请求参数默认值
+        log.info("分页查询,参数:{},{}",page,pageSize);
+
+        //调用service分页查询
+        PageBean pageBean =  empService.page(page,pageSize);
+
+        return Result.success(pageBean);
     }
 
     //根据id删除员工信息
