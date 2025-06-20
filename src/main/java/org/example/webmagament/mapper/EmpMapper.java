@@ -16,6 +16,16 @@ public interface EmpMapper {
     @Select("select * from emp")
     List<Emp> list();
 
+    /*
+    //获取员工总记录数
+    @Select("select count(*) from emp")
+    public Long count();
+
+    //分页查询获取列表数据
+    @Select("select * from emp limit #{start},#{pageSize}")
+    public List<Emp> page(Integer start, Integer pageSize);
+     */
+
     //分页条件查询(利用pageHelper插件)
     @Select("select * from emp where gender = #{gender}")
     List<Emp> list1(String gender);
@@ -28,15 +38,11 @@ public interface EmpMapper {
     @Insert("insert into emp values (#{id},#{workNo},#{name},#{gender},#{age},#{idCard})")
     void insert(Emp emp);
 
-    /*
-    //获取员工总记录数
-    @Select("select count(*) from emp")
-    public Long count();
+    //根据id查询员工信息
+    @Select("select * from emp where id = #{id}")
+    Emp getById(Integer id);
 
-    //分页查询获取列表数据
-    @Select("select * from emp limit #{start},#{pageSize}")
-    public List<Emp> page(Integer start, Integer pageSize);
-     */
+
 
 
 

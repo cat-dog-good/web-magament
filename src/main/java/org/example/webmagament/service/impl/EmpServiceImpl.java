@@ -1,6 +1,5 @@
 package org.example.webmagament.service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.example.webmagament.POJO.Emp;
@@ -62,5 +61,10 @@ public class EmpServiceImpl implements EmpService {
         //4.封装PageBean类对象
         PageBean pageBean = new PageBean(pageInfo.getTotal(), pageInfo.getList());
         return pageBean;
+    }
+
+    @Override
+    public Emp getById(Integer id) {
+        return empMapper.getById(id);
     }
 }

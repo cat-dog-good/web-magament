@@ -10,7 +10,7 @@ public interface EmpService {
     //查询全部员工信息
     List<Emp> list();
 
-    //根据id员工信息
+    //根据id删除员工信息
     int delete(Integer id);
 
     //添加员工信息
@@ -18,4 +18,7 @@ public interface EmpService {
 
     //分页查询员工信息
     PageBean page(Integer page, Integer pageSize,String gender);
+
+    //根据id查询员工信息
+    Emp getById(Integer id);
 }
