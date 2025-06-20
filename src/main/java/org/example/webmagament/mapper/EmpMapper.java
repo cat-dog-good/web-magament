@@ -13,9 +13,12 @@ import java.util.List;
 public interface EmpMapper {
 
     //查询全部员工信息
-    //也可以分页查询(利用pageHelper插件)
     @Select("select * from emp")
     List<Emp> list();
+
+    //分页条件查询(利用pageHelper插件)
+    @Select("select * from emp where gender = #{gender}")
+    List<Emp> list1(String gender);
 
     //根据id删除员工信息
     @Delete("delete from emp where id=#{id}")

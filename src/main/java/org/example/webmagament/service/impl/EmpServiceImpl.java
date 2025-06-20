@@ -33,6 +33,7 @@ public class EmpServiceImpl implements EmpService {
         empMapper.insert(emp);
     }
 
+
 //    @Override
 //    public PageBean page(Integer page, Integer pageSize) {
 //        //1.获取总记录数
@@ -48,12 +49,12 @@ public class EmpServiceImpl implements EmpService {
 //    }
 
     @Override
-    public PageBean page(Integer page, Integer pageSize) {
+    public PageBean page(Integer page, Integer pageSize,String gender) {
         //1.设置分页参数
         PageHelper.startPage(page, pageSize);
 
         //2.执行查询
-        List<Emp> empList = empMapper.list();
+        List<Emp> empList = empMapper.list1(gender);
 
         //3.通过PageInfo获取分页数据
         PageInfo<Emp> pageInfo = new PageInfo<>(empList);

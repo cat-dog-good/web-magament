@@ -17,5 +17,5 @@ public interface EmpService {
     void add(Emp emp);
 
     //分页查询员工信息
-    PageBean page(Integer page, Integer pageSize);
+    PageBean page(Integer page, Integer pageSize,String gender);
 }

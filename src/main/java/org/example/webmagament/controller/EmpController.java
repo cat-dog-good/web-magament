@@ -35,12 +35,14 @@ public class EmpController {
 
     //分页查询员工信息
     @GetMapping("/selectPage")
-    public Result page(@RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "3") Integer pageSize){
+    public Result page(@RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "3") Integer pageSize,
+                       @RequestParam(defaultValue = "男") String gender) {
         //@RequestParam设置请求参数默认值
-        log.info("分页查询,参数:{},{}",page,pageSize);
+        log.info("分页查询,参数:{},{}", page, pageSize);
 
         //调用service分页查询
-        PageBean pageBean =  empService.page(page,pageSize);
+        PageBean pageBean = empService.page(page, pageSize,gender);
 
         return Result.success(pageBean);
     }
