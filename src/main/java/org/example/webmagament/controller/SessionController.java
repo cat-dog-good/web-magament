@@ -3,6 +3,7 @@ package org.example.webmagament.controller;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.example.webmagament.POJO.Result;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,26 @@ public class SessionController {
             }
 
         }
+        return Result.success();
+    }
+
+    //往HttpSession中存储值
+    @GetMapping("/s1")
+    public Result session1(HttpSession session) {
+        log.info("HttpSession-s1:{}",session.hashCode());
+
+        session.setAttribute("longinUser","zhangsan");//往session中存储数据
+        return Result.success();
+    }
+
+    //从HttpSession中获取值
+    @GetMapping("/s2")
+    public Result session2(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        log.info("HttpSession-s2:{}",session.hashCode());
+
+        Object longinUser = session.getAttribute("longinUser");//从session中获取数据
+        log.info("longinUser:{}",longinUser);
         return Result.success();
     }
 
