@@ -67,4 +67,9 @@ public class EmpServiceImpl implements EmpService {
     public Emp getById(Integer id) {
         return empMapper.getById(id);
     }
+
+    @Override
+    public Emp login(Emp emp) {
+        return empMapper.getByUsernameAndIdCard(emp);
+    }
 }

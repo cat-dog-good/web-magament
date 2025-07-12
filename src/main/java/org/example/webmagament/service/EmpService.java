@@ -21,4 +21,7 @@ public interface EmpService {
 
     //根据id查询员工信息
     Emp getById(Integer id);
+
+    //登录功能
+    Emp login(Emp emp);
 }
