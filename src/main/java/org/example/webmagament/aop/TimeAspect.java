@@ -10,12 +10,17 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TimeAspect {
 
-    @Before("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    //抽取的切入点表达式
+    @Pointcut("execution(* org.example.webmagament.service.*.*(..))")
+    private void pt(){
+    }
+
+    @Before("pt()")
     public void before(){
         log.info("-----------------前置通知方法运行成功");
     }
 
-    @Around("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    @Around("pt()")
     public Object recordTime(ProceedingJoinPoint joinPoint) throws Throwable {
         //1.记录开始时间
         long begin = System.currentTimeMillis();
@@ -32,17 +37,17 @@ public class TimeAspect {
         return result;
     }
 
-    @After("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    @After("pt()")//切入点表达式
     public void after(){
         log.info("-----------------后置通知方法运行成功");
     }
 
-    @AfterReturning("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    @AfterReturning("pt()")//切入点表达式
     public void afterReturning(){
         log.info("-----------------返回后通知方法运行成功");
     }
 
-    @AfterThrowing("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    @AfterThrowing("pt()")//切入点表达式
     public void afterThrowing(){
         log.info("-----------------异常后通知运行成功");
     }
