@@ -2,14 +2,18 @@ package org.example.webmagament.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
 @Slf4j
 public class TimeAspect {
+
+    @Before("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    public void before(){
+        log.info("-----------------前置通知方法运行成功");
+    }
 
     @Around("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
     public Object recordTime(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -26,5 +30,20 @@ public class TimeAspect {
         log.info("Time taken: {} ms", end - begin);
 
         return result;
+    }
+
+    @After("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    public void after(){
+        log.info("-----------------后置通知方法运行成功");
+    }
+
+    @AfterReturning("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    public void afterReturning(){
+        log.info("-----------------返回后通知方法运行成功");
+    }
+
+    @AfterThrowing("execution(* org.example.webmagament.service.*.*(..))")//切入点表达式
+    public void afterThrowing(){
+        log.info("-----------------异常后通知运行成功");
     }
 }
