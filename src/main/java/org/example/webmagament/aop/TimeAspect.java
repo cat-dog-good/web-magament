@@ -5,6 +5,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 @Aspect
 @Slf4j
@@ -22,6 +24,16 @@ public class TimeAspect {
 
     @Around("pt()")
     public Object recordTime(ProceedingJoinPoint joinPoint) throws Throwable {
+
+        //1.获取目标对象的类名
+        log.info("目标对象的类名:{}",joinPoint.getClass().getName());
+
+        //2.获取目标方法的方法名
+        log.info("目标方法的方法名:{}",joinPoint.getSignature().getName());
+
+        //3.获取目标方法运行时传入的参数
+        log.info("目标方法运行时传入的参数:{}", Arrays.toString(joinPoint.getArgs()));
+
         //1.记录开始时间
         long begin = System.currentTimeMillis();
 
@@ -32,8 +44,10 @@ public class TimeAspect {
         long end = System.currentTimeMillis();
 
         log.info("执行方法为:"+joinPoint.getSignature());
+
         log.info("Time taken: {} ms", end - begin);
 
+        log.info("目标方法返回值为:{}",result);
         return result;
     }
 
