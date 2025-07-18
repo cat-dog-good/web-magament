@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.webmagament.POJO.Emp;
 import org.example.webmagament.POJO.PageBean;
 import org.example.webmagament.POJO.Result;
+import org.example.webmagament.anno.Log;
 import org.example.webmagament.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class EmpController {
     //查询全部员工信息
     //@RequestMapping(value = "/qill7/selectAll",method = RequestMethod.GET)//指定为GET请求
     @GetMapping("/selectAll")//与上面等效
+    @Log
     public Result list(){
         log.info("=========查询全部员工信息============");
 
@@ -35,6 +37,7 @@ public class EmpController {
 
     //分页查询员工信息
     @GetMapping("/selectPage")
+    @Log
     public Result page(@RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "3") Integer pageSize,
                        @RequestParam(defaultValue = "男") String gender) {
@@ -49,6 +52,7 @@ public class EmpController {
 
     //根据id删除员工信息
     @DeleteMapping("/{id}")
+    @Log
     public Result delete(@PathVariable Integer id){
         log.info("根据id删除员工信息:{}",id);
 
@@ -61,6 +65,7 @@ public class EmpController {
 
     //添加员工信息
     @PostMapping
+    @Log
     public Result add(@RequestBody Emp emp){
         log.info("添加员工信息:{}",emp);
 
@@ -71,6 +76,7 @@ public class EmpController {
 
     //根据id查询员工信息
     @GetMapping("{id}")
+    @Log
     public Result getById(@PathVariable Integer id){
         log.info("根据id查询员工信息:{}",id);
 
